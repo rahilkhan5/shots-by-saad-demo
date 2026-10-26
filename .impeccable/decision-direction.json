@@ -1,0 +1,131 @@
+{
+  "title": "Wedding photographer demo: choose the look",
+  "question": "The roll picked Contact Sheet. Keep it, take another card, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Contact Sheet",
+      "kicker": "THE ROLL",
+      "lineage": "a photographer's darkroom proof sheets: film strips laid on a lightbox, frames ringed in red grease pencil",
+      "thesis": "Every wedding is a proof sheet the photographer has already marked: the best frames are circled in red, and you see the choosing, not just the photos.",
+      "palette": ["#f7f6f2", "#141210", "#d2232a", "#e8a33d", "#d9d4ca"],
+      "materials": ["film rebate with edge numbers", "red grease pencil on a lightbox"],
+      "viewport": "A lit contact sheet of one barat in strips of six; three frames are circled in red, and one of them is pulled up full size beside the photographer's name and the next free wedding dates.",
+      "risk": "Can feel cold and technical for something as warm as a wedding if the frames are small and the colour stays black and white.",
+      "raised": [
+        { "from": "challenger-zine", "raise": "The red grease pencil is the one hand-made layer: circles and arrows draw themselves onto the best frames as you scroll." },
+        { "from": "challenger-nixie", "raise": "Frame numbers and dates sit in fixed positions like film edge print, so counts read the same everywhere." },
+        { "from": "challenger-anime", "raise": "One number is set at monumental scale: how many dates are still free this wedding season." },
+        { "from": "challenger-tensegrity", "raise": "A date is plainly free, one function left, or booked, never a vague maybe." },
+        { "from": "challenger-dream", "raise": "Feeling lives in the captions; prices, dates and what is included are set in a plain working voice." }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Wedding Album",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "the bound Pakistani wedding album: velvet cover, gold foil names, thick pages turned one spread at a time",
+      "thesis": "The website as the album the couple will receive: each wedding opens spread by spread, function by function.",
+      "palette": ["#f4ede1", "#5e1a24", "#b8913a", "#1f3b2d"],
+      "materials": ["velvet cover", "gold foil", "thick album board"],
+      "viewport": "A velvet album cover with the photographer's name in gold foil opens onto a mehndi spread.",
+      "risk": "The most familiar idea for a wedding photographer; it can look like every other wedding site."
+    },
+    {
+      "id": "challenger-market",
+      "label": "Lantern River",
+      "verdict": "competitive",
+      "lineage": "a night market's river of lanterns and hand-painted stall signs",
+      "thesis": "A wedding night lit by strings of lights: each function (mehndi, barat, walima) is its own lit street to walk down.",
+      "palette": ["#121417", "#f2a33a", "#1f4e8c", "#c0392b", "#f3f1ec"],
+      "materials": ["string lights", "hand-painted signs", "wet night asphalt"],
+      "viewport": "A dark street of lights with three painted signs: Mehndi, Barat, Walima, each leading into its photos.",
+      "case": "Holds audience identification (Pakistani weddings are lit at night), but a market reads as shopping, not a photographer's eye.",
+      "risk": "Busy and dark; the photos compete with the lights.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-night-market-sign-river-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-night-market-sign-river.webp"
+    },
+    {
+      "id": "challenger-zine",
+      "label": "Hand-drawn Zine",
+      "verdict": "declined",
+      "lineage": "a marker-drawn explainer zine",
+      "thesis": "The photographer explains the wedding day in doodles and comic panels.",
+      "palette": ["#f6f0e2", "#111111", "#ffd23f", "#ff6fa3"],
+      "materials": ["cream paper", "marker ink", "highlighter"],
+      "viewport": "A doodled timeline of the wedding day with photos stuck on.",
+      "case": "Fuses poorly: doodles shrink the photos and make the work look casual.",
+      "kept": "One hand-made layer that draws itself on.",
+      "risk": "Playful where couples want to trust the work.",
+      "hero": "https://impeccable.style/worlds/cards/hand-drawn-zine-explainer-hero.webp"
+    },
+    {
+      "id": "challenger-nixie",
+      "label": "Nixie Counter",
+      "verdict": "declined",
+      "lineage": "glowing nixie tube counters",
+      "thesis": "Dates and prices as glowing orange digits.",
+      "palette": ["#16110d", "#ff7a1a", "#8a8a8a"],
+      "materials": ["glass tubes", "black steel"],
+      "viewport": "A bank of glowing digits counting free dates.",
+      "case": "Fuses poorly: a lab instrument has nothing to do with a wedding.",
+      "kept": "Numbers in fixed positions.",
+      "risk": "Cold and technical.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-nixie-laboratory-counter-hero.webp"
+    },
+    {
+      "id": "challenger-anime",
+      "label": "Command Wall",
+      "verdict": "declined",
+      "lineage": "nineties anime crisis screens",
+      "thesis": "The wedding season as an alarm wall with countdowns.",
+      "palette": ["#000000", "#ff8a00", "#9cff3a", "#e10600"],
+      "materials": ["phosphor glow", "hazard chevrons"],
+      "viewport": "A giant countdown to the wedding date.",
+      "case": "Fuses poorly: alarm and crisis are the wrong feelings for a wedding.",
+      "kept": "One number at monumental scale.",
+      "risk": "Aggressive and loud.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-anime-command-center-hero.webp"
+    },
+    {
+      "id": "challenger-tensegrity",
+      "label": "Tension Column",
+      "verdict": "declined",
+      "lineage": "tensegrity sculpture of rods and cord",
+      "thesis": "Packages as balanced forces.",
+      "palette": ["#e7e4de", "#151515", "#c8102e"],
+      "materials": ["carbon rods", "red cord"],
+      "viewport": "A floating column of rods with package names on cords.",
+      "case": "Fuses poorly: abstract engineering hides what the couple buys.",
+      "kept": "States that are clearly distinct.",
+      "risk": "Confusing.",
+      "hero": "https://impeccable.style/worlds/cards/kinetic-sculpture-automata-tensegrity-breathing-column-hero.webp"
+    },
+    {
+      "id": "challenger-dream",
+      "label": "Sleeping City",
+      "verdict": "declined",
+      "lineage": "a surreal city folded like a quilt at night",
+      "thesis": "Each wedding as a dreaming district under one night sky.",
+      "palette": ["#141c33", "#e2b84b", "#f2efe6"],
+      "materials": ["night navy", "embroidered stars"],
+      "viewport": "A folded night city map with weddings as districts.",
+      "case": "Fuses poorly: dreamy maps slow down browsing the photos.",
+      "kept": "A plain waking voice for the practical notes.",
+      "risk": "Pretty but hard to use.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-sleeping-city-fold-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A dark, minimal photographer portfolio, done very well.",
+    "palette": ["#0e0e0e", "#f2f2f2", "#b9a27a"],
+    "materials": ["full-bleed photos", "thin serif names"],
+    "viewport": "A full-screen slideshow of wedding photos with the photographer's name in a thin serif.",
+    "risk": "Looks like every other photographer site."
+  },
+  "steer": true
+}

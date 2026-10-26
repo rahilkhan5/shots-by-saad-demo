@@ -1,0 +1,18 @@
+Wedding photos, all from Unsplash under the Unsplash License (free to use).
+Saved as WebP at 700 and 1400 px wide. Used only as demo content; the function labels are made up.
+
+mehndi-hands: Vitaliy Lyubezhanin, https://unsplash.com/photos/gfVofr15ICc (source https://images.unsplash.com/photo-1505932794465-147d1f1b2c97)
+mehndi-stage: The Decor Seo, https://unsplash.com/photos/ZBc2gAFGNRo (source https://images.unsplash.com/photo-1729237261107-6fc4279f6d1c)
+mehndi-friends: kabita Darlami, https://unsplash.com/photos/cAOL2touWXs (source https://images.unsplash.com/photo-1684813910513-11e6b30adc22)
+mehndi-bride: kabita Darlami, https://unsplash.com/photos/o82pO3KIl2E (source https://images.unsplash.com/photo-1684814070823-97e0b9e99c69)
+nikah-rings: Khadija Yousaf, https://unsplash.com/photos/lKwp3-FQomY (source https://images.unsplash.com/photo-1542042161784-26ab9e041e89)
+nikah-henna: anik das, https://unsplash.com/photos/wbLCos9rVLQ (source https://images.unsplash.com/photo-1730003873829-09b4b16444c1)
+barat-bride: Naeem Ad, https://unsplash.com/photos/wN2ijql9HOs (source https://images.unsplash.com/photo-1721324807083-e9ddaa99310e)
+barat-lawn: Talha Hadi, https://unsplash.com/photos/x1h4Nw0CwfY (source https://images.unsplash.com/photo-1707576618343-26a1b377ca7a)
+barat-arches: Haseeb Rehman, https://unsplash.com/photos/NnwTZL6uu2k (source https://images.unsplash.com/photo-1688850771112-57db075cca0c)
+barat-candle: Talha Hadi, https://unsplash.com/photos/vrcdmeF0xus (source https://images.unsplash.com/photo-1707665231481-f0d3e1fceb0b)
+barat-couple: Haseeb Rehman, https://unsplash.com/photos/mC0NJFU5HAg (source https://images.unsplash.com/photo-1688850771088-ea838f3ed5ce)
+walima-bride: faizan khan, https://unsplash.com/photos/mhjWvVTA_qY (source https://images.unsplash.com/photo-1634990107480-1422c742f9b5)
+walima-veil: Naeem Ad, https://unsplash.com/photos/GZ6AJCvqL5I (source https://images.unsplash.com/photo-1721324807072-784ab8ddf166)
+walima-garden: Haseeb Rehman, https://unsplash.com/photos/jMz6q_WkeuI (source https://images.unsplash.com/photo-1688850771830-fcf551e51ca9)
+walima-gown: Talha Hadi, https://unsplash.com/photos/3wNObqFvMmo (source https://images.unsplash.com/photo-1707665231486-4c1d66a15b80)

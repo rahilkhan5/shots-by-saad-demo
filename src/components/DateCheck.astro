@@ -1,0 +1,842 @@
+---
+import Mascot from './Mascot.astro';
+import Doodle from './Doodle.astro';
+import { FUNCTIONS, packages } from '../data/studio.js';
+---
+
+<section class="section page" id="date" aria-labelledby="date-title">
+  <div class="section-head">
+    <h2 id="date-title">Is your <span class="circled">date<Doodle kind="circle" /></span> free?</h2>
+    <p>Pick your wedding date. Saad has two teams, so a busy date can still have one team left.</p>
+  </div>
+
+  <div class="check">
+    <div class="calendar" data-calendar>
+      <div class="cal-head">
+        <button type="button" class="cal-move" data-cal-prev aria-label="Previous month">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
+        </button>
+        <h3 class="cal-month" data-cal-month aria-live="polite">Month</h3>
+        <button type="button" class="cal-move" data-cal-next aria-label="Next month">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+        </button>
+      </div>
+      <div class="cal-week" aria-hidden="true">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+      <div class="cal-days" role="group" aria-label="Dates" data-cal-days></div>
+      <ul class="cal-key" aria-label="What the marks mean">
+        <li><span class="key key-free"></span>Free</li>
+        <li><span class="key key-one">1</span>One team left</li>
+        <li><span class="key key-booked">14</span>Booked</li>
+      </ul>
+      <noscript><p>Turn on JavaScript to check dates.</p></noscript>
+    </div>
+
+    <div class="answer">
+      <Mascot mood="happy" size={150} class="answer-mascot" />
+      <div class="bubble" role="status" aria-live="polite" data-answer>
+        <p class="bubble-title" data-answer-title>Pick a date on the calendar.</p>
+        <p data-answer-text>I’ll tell you straight away if we’re free.</p>
+        <div class="bubble-actions" data-answer-actions></div>
+      </div>
+    </div>
+  </div>
+
+  <form class="enquiry" id="enquiry" data-enquiry novalidate>
+    <div class="enquiry-head">
+      <h3>Send an enquiry</h3>
+      <p>Tell us about your shaadi. On the real site Saad replies on WhatsApp within a day.</p>
+    </div>
+    <div class="grid">
+      <div class="field">
+        <label for="enq-name">Your name</label>
+        <input id="enq-name" name="name" autocomplete="name" aria-describedby="enq-name-error" />
+        <p class="field-error" id="enq-name-error" data-error-for="name"></p>
+      </div>
+      <div class="field">
+        <label for="enq-phone">WhatsApp number</label>
+        <input
+          id="enq-phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          placeholder="03XX XXXXXXX"
+          aria-describedby="enq-phone-error"
+        />
+        <p class="field-error" id="enq-phone-error" data-error-for="phone"></p>
+      </div>
+      <div class="field">
+        <label for="enq-date">Wedding date</label>
+        <input id="enq-date" name="date" type="date" aria-describedby="enq-date-error" data-enquiry-date />
+        <p class="field-error" id="enq-date-error" data-error-for="date"></p>
+      </div>
+      <div class="field">
+        <label for="enq-city">City</label>
+        <input id="enq-city" name="city" autocomplete="address-level2" placeholder="Lahore" />
+      </div>
+      <fieldset class="field functions">
+        <legend>Which functions?</legend>
+        <div class="fn-list">
+          {
+            Object.entries(FUNCTIONS).map(([key, f]) => (
+              <label class="fn" data-tone={f.tone}>
+                <input type="checkbox" name="functions" value={key} />
+                <span>{f.label}</span>
+              </label>
+            ))
+          }
+        </div>
+        <p class="field-error" data-error-for="functions"></p>
+      </fieldset>
+      <div class="field">
+        <label for="enq-package">Package</label>
+        <select id="enq-package" name="package">
+          <option value="">Not sure yet</option>
+          {packages.map((p) => <option value={p.name}>{p.name}, {p.price}</option>)}
+        </select>
+      </div>
+      <div class="field wide">
+        <label for="enq-notes">Anything else? <span class="optional">(optional)</span></label>
+        <textarea id="enq-notes" name="notes" rows="3" placeholder="Venue, number of guests, anything special"></textarea>
+      </div>
+    </div>
+    <div class="enquiry-foot">
+      <button class="marker-button" type="submit">
+        Send enquiry
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
+      </button>
+      <p class="demo-line">Demo: nothing you type leaves this page.</p>
+    </div>
+  </form>
+
+  <div class="sent" data-sent hidden tabindex="-1">
+    <Mascot mood="happy" size={120} />
+    <div>
+      <h3 data-sent-title>Got it!</h3>
+      <p data-sent-text></p>
+      <button type="button" class="marker-button plain" data-sent-again>Send another</button>
+    </div>
+    <Doodle kind="star" color="#ff6fae" class="sent-star" />
+  </div>
+</section>
+
+<script>
+  const TZ = 'Asia/Karachi';
+  const root = document.querySelector('#date');
+  const daysEl = root.querySelector('[data-cal-days]');
+  const monthEl = root.querySelector('[data-cal-month]');
+  const prev = root.querySelector('[data-cal-prev]');
+  const next = root.querySelector('[data-cal-next]');
+  const mascot = root.querySelector('.answer-mascot');
+  const title = root.querySelector('[data-answer-title]');
+  const text = root.querySelector('[data-answer-text]');
+  const actions = root.querySelector('[data-answer-actions]');
+  const form = root.querySelector('[data-enquiry]');
+  const sent = root.querySelector('[data-sent]');
+
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+  const get = (t) => Number(parts.find((p) => p.type === t).value);
+  const today = new Date(Date.UTC(get('year'), get('month') - 1, get('day')));
+  const MONTHS_AHEAD = 11;
+  let view = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1));
+  let picked = null;
+
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const monthName = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', month: 'long', year: 'numeric' });
+  const longDay = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+  const shortDay = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' });
+
+  function hash(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i += 1) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return (h >>> 0) / 4294967295;
+  }
+
+  // Made-up bookings, stable for each date: weekends and winter wedding
+  // season are busier.
+  function teamsBooked(date) {
+    const day = date.getUTCDay();
+    const month = date.getUTCMonth();
+    const weekend = day === 5 || day === 6 || day === 0;
+    const season = month >= 10 || month <= 1;
+    const p = (weekend ? 0.5 : 0.18) + (season ? 0.22 : 0);
+    const key = iso(date);
+    return (hash(`${key}a`) < p ? 1 : 0) + (hash(`${key}b`) < p * 0.85 ? 1 : 0);
+  }
+
+  const STATUS = ['free', 'one', 'booked'];
+
+  function render() {
+    monthEl.textContent = monthName.format(view);
+    const first = view;
+    const lead = (first.getUTCDay() + 6) % 7;
+    const count = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0)).getUTCDate();
+    const cells = [];
+    for (let i = 0; i < lead; i += 1) {
+      const blank = document.createElement('span');
+      blank.className = 'cal-blank';
+      cells.push(blank);
+    }
+    for (let d = 1; d <= count; d += 1) {
+      const date = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth(), d));
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cal-day';
+      b.textContent = String(d);
+      b.dataset.date = iso(date);
+      if (date < today) {
+        b.disabled = true;
+        b.dataset.status = 'past';
+        b.setAttribute('aria-label', `${longDay.format(date)}, past`);
+      } else {
+        const status = STATUS[teamsBooked(date)];
+        b.dataset.status = status;
+        b.setAttribute('aria-label', `${longDay.format(date)}, ${status === 'free' ? 'free' : status === 'one' ? 'one team left' : 'booked'}`);
+        b.setAttribute('aria-pressed', String(picked === b.dataset.date));
+      }
+      cells.push(b);
+    }
+    daysEl.replaceChildren(...cells);
+    prev.disabled = view.getTime() <= new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 1)).getTime();
+    const last = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + MONTHS_AHEAD, 1));
+    next.disabled = view.getTime() >= last.getTime();
+  }
+
+  function nearestFree(date) {
+    const found = [];
+    for (let step = 1; step <= 21 && found.length < 2; step += 1) {
+      for (const sign of [-1, 1]) {
+        const d = new Date(date.getTime() + sign * step * 86400000);
+        if (d >= today && teamsBooked(d) < 2 && found.length < 2) found.push(d);
+      }
+    }
+    return found.sort((a, b) => a - b);
+  }
+
+  function choose(dateIso) {
+    picked = dateIso;
+    const date = new Date(`${dateIso}T00:00:00Z`);
+    const booked = teamsBooked(date);
+    daysEl.querySelectorAll('.cal-day').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.date === dateIso)));
+    actions.replaceChildren();
+    const when = longDay.format(date);
+    if (booked === 0) {
+      mascot.dataset.mood = 'happy';
+      title.textContent = `${when} is free!`;
+      text.textContent = 'Both teams are free. A 30% advance locks the date.';
+      actions.append(enquireButton(dateIso));
+    } else if (booked === 1) {
+      mascot.dataset.mood = 'alert';
+      title.textContent = `One team left on ${when}.`;
+      text.textContent = 'Saad is booked that day, but his second team is free. Enquire soon, wedding dates go fast.';
+      actions.append(enquireButton(dateIso));
+    } else {
+      mascot.dataset.mood = 'sorry';
+      title.textContent = `Sorry, ${when} is booked.`;
+      const near = nearestFree(date);
+      text.textContent = near.length ? 'Both teams are taken. These dates nearby still have a team free:' : 'Both teams are taken that day.';
+      for (const d of near) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'try-date';
+        b.textContent = shortDay.format(d);
+        b.addEventListener('click', () => {
+          view = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1));
+          render();
+          choose(iso(d));
+          daysEl.querySelector(`[data-date="${iso(d)}"]`)?.focus();
+        });
+        actions.append(b);
+      }
+    }
+  }
+
+  function enquireButton(dateIso) {
+    const a = document.createElement('a');
+    a.href = '#enquiry';
+    a.className = 'marker-link';
+    a.textContent = 'Enquire for this date';
+    a.addEventListener('click', () => {
+      form.elements.date.value = dateIso;
+    });
+    return a;
+  }
+
+  daysEl.addEventListener('click', (event) => {
+    const b = event.target.closest('.cal-day');
+    if (b && !b.disabled) {
+      choose(b.dataset.date);
+      form.elements.date.value = b.dataset.date;
+    }
+  });
+  prev.addEventListener('click', () => {
+    view = new Date(Date.UTC(view.getUTCFullYear(), view.getUTCMonth() - 1, 1));
+    render();
+  });
+  next.addEventListener('click', () => {
+    view = new Date(Date.UTC(view.getUTCFullYear(), view.getUTCMonth() + 1, 1));
+    render();
+  });
+
+  // Enquiry: checked here, never sent.
+  const MOBILE = /^(\+92|0092|92|0)?\s?3\d{2}[\s-]?\d{7}$/;
+  form.elements.date.min = iso(today);
+
+  function setError(name, message) {
+    const p = form.querySelector(`[data-error-for="${name}"]`);
+    p.textContent = message;
+    const field = form.elements[name];
+    if (field && field.setAttribute) field.setAttribute('aria-invalid', message ? 'true' : 'false');
+  }
+
+  form.addEventListener('input', (event) => {
+    const name = event.target.name;
+    if (name && form.querySelector(`[data-error-for="${name}"]`)?.textContent) setError(name, '');
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = form.elements.name.value.trim();
+    const phone = form.elements.phone.value.trim();
+    const date = form.elements.date.value;
+    const fns = [...form.querySelectorAll('input[name="functions"]:checked')].map((i) => i.parentElement.textContent.trim());
+    const errors = [];
+    setError('name', name.length < 2 ? 'Write your name.' : '');
+    if (name.length < 2) errors.push(form.elements.name);
+    setError('phone', MOBILE.test(phone) ? '' : 'Write a Pakistani mobile number, like 03XX XXXXXXX.');
+    if (!MOBILE.test(phone)) errors.push(form.elements.phone);
+    const dateOk = date && date >= iso(today);
+    setError('date', dateOk ? '' : 'Pick your wedding date.');
+    if (!dateOk) errors.push(form.elements.date);
+    setError('functions', fns.length ? '' : 'Tick at least one function.');
+    if (!fns.length) errors.push(form.querySelector('input[name="functions"]'));
+    if (errors.length) {
+      errors[0].focus();
+      return;
+    }
+    const when = longDay.format(new Date(`${date}T00:00:00Z`));
+    const first = name.split(/\s+/)[0];
+    sent.querySelector('[data-sent-title]').textContent = `Got it, ${first}!`;
+    sent.querySelector('[data-sent-text]').textContent =
+      `${fns.join(', ')} on ${when}. On the real site Saad would message you on WhatsApp within a day. This is a demo, so nothing was sent.`;
+    form.hidden = true;
+    sent.hidden = false;
+    sent.focus();
+  });
+
+  sent.querySelector('[data-sent-again]').addEventListener('click', () => {
+    form.reset();
+    sent.hidden = true;
+    form.hidden = false;
+    form.elements.name.focus();
+  });
+
+  render();
+</script>
+
+<style>
+  .check {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .calendar {
+    position: relative;
+    padding: var(--space-5);
+    border: 2.5px solid var(--ink);
+    border-radius: var(--sketch-2);
+    background: var(--paper-raised);
+  }
+
+  .cal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .cal-month {
+    font-size: var(--step-2);
+  }
+
+  .cal-move {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--ink);
+    border-radius: 50% 45% 52% 48%;
+    background: var(--paper);
+    cursor: pointer;
+    transition: transform 140ms var(--ease-out);
+  }
+
+  .cal-move:active {
+    transform: scale(0.94);
+  }
+
+  .cal-move:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .cal-move svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .cal-week,
+  .cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .cal-week {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-marker);
+    font-weight: 700;
+    font-size: var(--step--1);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .cal-days :global(.cal-day) {
+    position: relative;
+    min-height: 48px;
+    border: 1.5px solid transparent;
+    border-radius: 46% 54% 50% 50% / 52% 48% 52% 48%;
+    background: transparent;
+    font-family: var(--font-marker);
+    font-weight: 700;
+    font-size: var(--step-1);
+    cursor: pointer;
+    transition: transform 140ms var(--ease-out);
+  }
+
+  .cal-days :global(.cal-day:hover:not(:disabled)) {
+    border-color: var(--ink);
+  }
+
+  .cal-days :global(.cal-day:active:not(:disabled)) {
+    transform: scale(0.94);
+  }
+
+  .cal-days :global(.cal-day[data-status='free']::after) {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 6px;
+    width: 7px;
+    height: 7px;
+    margin-left: -3.5px;
+    border-radius: 50%;
+    background: var(--hl-teal-ink);
+  }
+
+  .cal-days :global(.cal-day[data-status='one']) {
+    background: var(--swipe-yellow) no-repeat 50% 60% / 90% 62%;
+  }
+
+  .cal-days :global(.cal-day[data-status='booked']) {
+    color: var(--ink-soft);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' preserveAspectRatio='none'%3E%3Cpath d='M8 30C16 22 24 16 33 9' stroke='%23111' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center / 70% 70%;
+  }
+
+  .cal-days :global(.cal-day[data-status='past']) {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .cal-days :global(.cal-day[aria-pressed='true']) {
+    border: 2.5px solid var(--ink);
+    box-shadow: 0 0 0 3px var(--hl-pink);
+  }
+
+  .cal-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin: var(--space-4) 0 0;
+    padding: var(--space-3) 0 0;
+    border-top: 2px dashed rgb(17 17 17 / 0.25);
+    list-style: none;
+    font-size: var(--step--1);
+  }
+
+  .cal-key li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .key {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 26px;
+    font-family: var(--font-marker);
+    font-weight: 700;
+    font-size: var(--step--2);
+  }
+
+  .key-free {
+    position: relative;
+  }
+
+  .key-free::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--hl-teal-ink);
+  }
+
+  .key-one {
+    background: var(--swipe-yellow) no-repeat center / 100% 70%;
+  }
+
+  .key-booked {
+    color: var(--ink-soft);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' preserveAspectRatio='none'%3E%3Cpath d='M8 30C16 22 24 16 33 9' stroke='%23111' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center / 80% 80%;
+  }
+
+  .answer {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-2);
+    position: sticky;
+    top: var(--space-5);
+  }
+
+  .bubble {
+    position: relative;
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-5);
+    border: 2.5px solid var(--ink);
+    border-radius: var(--sketch);
+    background: var(--paper-raised);
+  }
+
+  .bubble::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 54px;
+    width: 26px;
+    height: 26px;
+    border-left: 2.5px solid var(--ink);
+    border-top: 2.5px solid var(--ink);
+    background: var(--paper-raised);
+    transform: rotate(45deg) skew(8deg, 8deg);
+  }
+
+  .bubble-title {
+    font-family: var(--font-marker);
+    font-weight: 800;
+    font-size: var(--step-2);
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .bubble-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .bubble-actions:empty {
+    display: none;
+  }
+
+  .bubble :global(.try-date) {
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    border: 2px solid var(--ink);
+    border-radius: var(--sketch-2);
+    background: var(--swipe-teal) no-repeat center / 92% 70%, var(--paper);
+    font-family: var(--font-marker);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .enquiry {
+    margin-top: var(--space-7);
+    padding: var(--space-6);
+    border: 2.5px solid var(--ink);
+    border-radius: var(--sketch);
+    background:
+      repeating-linear-gradient(transparent 0 31px, rgb(45 212 191 / 0.18) 31px 32px),
+      var(--paper-raised);
+    scroll-margin-top: var(--space-4);
+  }
+
+  .enquiry-head {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .enquiry-head h3 {
+    font-size: var(--step-2);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-5);
+  }
+
+  .field {
+    display: grid;
+    gap: var(--space-1);
+    align-content: start;
+    min-width: 0;
+  }
+
+  .wide,
+  .functions {
+    grid-column: 1 / -1;
+  }
+
+  .field label,
+  .functions legend {
+    font-family: var(--font-marker);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--step--1);
+  }
+
+  .optional {
+    font-family: var(--font-body);
+    text-transform: none;
+    font-weight: 400;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    min-height: 50px;
+    padding: var(--space-2) var(--space-3);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-field);
+    background: #fff;
+    caret-color: var(--ink);
+  }
+
+  .field textarea {
+    resize: vertical;
+  }
+
+  .field [aria-invalid='true'] {
+    border-color: var(--error);
+    border-width: 3px;
+  }
+
+  .functions {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .fn-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .fn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 46px;
+    padding: 0 var(--space-4);
+    border: 2px solid var(--ink);
+    border-radius: var(--sketch-2);
+    background: #fff;
+    font-family: var(--font-marker);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* A drawn checkbox: an ink box that gets a marker tick. */
+  .fn input {
+    appearance: none;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-tick);
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .fn input:checked {
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M5 16l7 7L26 6' fill='none' stroke='%23111' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 90% no-repeat;
+  }
+
+  .fn input:focus-visible {
+    outline: none;
+  }
+
+  .field select {
+    appearance: none;
+    padding-right: 44px;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 9c3 3 5 5 7 7 2-2 4-4 7-7' fill='none' stroke='%23111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 14px center / 20px no-repeat;
+    cursor: pointer;
+  }
+
+  .fn:has(input:checked)[data-tone='yellow'] {
+    background: var(--swipe-yellow) no-repeat center / 96% 80%, #fff;
+  }
+
+  .fn:has(input:checked)[data-tone='pink'] {
+    background: var(--swipe-pink) no-repeat center / 96% 80%, #fff;
+  }
+
+  .fn:has(input:checked)[data-tone='teal'] {
+    background: var(--swipe-teal) no-repeat center / 96% 80%, #fff;
+  }
+
+  .fn:has(input:checked)[data-tone='ink'] {
+    background: #fff;
+    text-decoration: underline 3px;
+    text-underline-offset: 0.25em;
+  }
+
+  .fn:has(input:focus-visible) {
+    outline: 3px dashed var(--ink);
+    outline-offset: 3px;
+  }
+
+  .field-error {
+    font-weight: 700;
+    font-size: var(--step--1);
+    color: var(--error);
+  }
+
+  .field-error:empty {
+    display: none;
+  }
+
+  .enquiry-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .demo-line {
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+
+  .sent {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-5);
+    align-items: center;
+    margin-top: var(--space-7);
+    padding: var(--space-6);
+    border: 2.5px solid var(--ink);
+    border-radius: var(--sketch);
+    background: var(--paper-raised);
+  }
+
+  .sent:focus {
+    outline: none;
+  }
+
+  .sent > div {
+    display: grid;
+    gap: var(--space-3);
+    justify-items: start;
+  }
+
+  .sent h3 {
+    font-size: var(--step-3);
+  }
+
+  .sent :global(.sent-star) {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    width: 40px;
+  }
+
+  @media (max-width: 900px) {
+    .check {
+      grid-template-columns: 1fr;
+    }
+
+    .answer {
+      position: static;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+    }
+
+    .answer :global(.answer-mascot) {
+      width: 96px;
+      height: 96px;
+    }
+
+    .bubble::before {
+      top: 30px;
+      left: -16px;
+      transform: rotate(-45deg) skew(8deg, 8deg);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .calendar {
+      padding: var(--space-4) var(--space-3);
+    }
+
+    .cal-week,
+    .cal-days {
+      gap: 2px;
+    }
+
+    .cal-days :global(.cal-day) {
+      min-height: 44px;
+      font-size: var(--step-0);
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .enquiry {
+      padding: var(--space-5) var(--space-4);
+    }
+
+    .sent {
+      grid-template-columns: 1fr;
+      padding: var(--space-5);
+    }
+  }
+</style>

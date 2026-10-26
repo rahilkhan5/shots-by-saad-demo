@@ -1,0 +1,38 @@
+---
+// Marker doodles. Each path has pathLength 1 so it can draw itself on
+// (see .draw in global.css and the observer in the page script).
+interface Props {
+  kind: 'arrow' | 'arrow-down' | 'swoosh' | 'circle' | 'star' | 'check' | 'loop';
+  color?: string;
+  class?: string;
+  width?: number;
+}
+const { kind, color = '#111', class: className, width } = Astro.props;
+
+const shapes = {
+  arrow: { box: '0 0 120 90', paths: ['M6 78C24 30 64 14 106 20', 'M90 8l17 12-15 15'] },
+  'arrow-down': { box: '0 0 70 110', paths: ['M38 6C16 34 18 70 34 98', 'M18 84l17 17 14-20'] },
+  swoosh: { box: '0 0 300 24', paths: ['M4 16C80 6 180 4 296 10'] },
+  circle: { box: '0 0 220 120', paths: ['M150 12C92 0 18 16 10 58c-8 44 74 58 140 46 54-10 70-48 46-74-16-18-56-22-88-18'] },
+  star: { box: '0 0 40 40', paths: ['M20 3v34M5 11l30 18M35 11 5 29'] },
+  check: { box: '0 0 30 30', paths: ['M4 16l8 8L27 5'] },
+  loop: { box: '0 0 120 60', paths: ['M4 44c22-30 58-36 54-14-4 20-30 10-16-6 16-18 50-14 74 6'] },
+};
+const shape = shapes[kind];
+---
+
+<svg
+  class:list={['doodle', 'draw', className]}
+  viewBox={shape.box}
+  width={width}
+  fill="none"
+  stroke={color}
+  stroke-width={kind === 'swoosh' ? 6 : 3.5}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  preserveAspectRatio={kind === 'swoosh' || kind === 'circle' ? 'none' : undefined}
+>
+  {shape.paths.map((d) => <path d={d} pathLength="1" />)}
+</svg>

@@ -1,0 +1,128 @@
+---
+// A photo taped onto the page: two strips of tape, a slight tilt, and an
+// optional marker caption. With `open`, the photo opens in the viewer.
+import { photos } from '../data/studio.js';
+
+interface Props {
+  name: string;
+  tilt?: number;
+  sizes?: string;
+  caption?: string;
+  open?: number;
+  eager?: boolean;
+  crop?: string;
+  class?: string;
+}
+const { name, tilt = 0, sizes = '(min-width: 900px) 40vw, 92vw', caption, open, eager = false, crop, class: className } = Astro.props;
+const photo = photos[name];
+const img = {
+  src: `/photos/${name}-1400.webp`,
+  srcset: `/photos/${name}-700.webp 700w, /photos/${name}-1400.webp 1400w`,
+  sizes,
+  width: photo.w,
+  height: photo.h,
+  alt: photo.alt,
+  loading: eager ? 'eager' : 'lazy',
+  decoding: 'async',
+  fetchpriority: eager ? 'high' : undefined,
+  style: crop ? `aspect-ratio: ${crop}; object-fit: cover;` : undefined,
+};
+---
+
+<figure class:list={['taped', className]} style={`--tilt: ${tilt}deg`}>
+  {
+    open !== undefined ? (
+      <button type="button" class="taped-open" data-open-photo={open} aria-label={`Open photo: ${photo.alt}`}>
+        <img
+          src={img.src}
+          srcset={img.srcset}
+          sizes={img.sizes}
+          width={img.width}
+          height={img.height}
+          alt={img.alt}
+          loading={img.loading}
+          decoding="async"
+          fetchpriority={img.fetchpriority}
+          style={img.style}
+        />
+      </button>
+    ) : (
+      <img
+          src={img.src}
+          srcset={img.srcset}
+          sizes={img.sizes}
+          width={img.width}
+          height={img.height}
+          alt={img.alt}
+          loading={img.loading}
+          decoding="async"
+          fetchpriority={img.fetchpriority}
+          style={img.style}
+        />
+    )
+  }
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .taped {
+    position: relative;
+    margin: 0;
+    padding: 10px 10px 12px;
+    background: var(--paper-raised);
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-photo);
+    box-shadow: var(--lift);
+    transform: rotate(var(--tilt));
+  }
+
+  .taped::before,
+  .taped::after {
+    content: '';
+    position: absolute;
+    width: min(84px, 36%);
+    height: 26px;
+    background: var(--tape);
+    border: 1px solid rgb(17 17 17 / 0.08);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .taped::before {
+    top: -12px;
+    left: 18px;
+    transform: rotate(-8deg);
+  }
+
+  .taped::after {
+    top: -10px;
+    right: 16px;
+    transform: rotate(6deg);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .taped-open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+  }
+
+  .taped-open:focus-visible {
+    outline-offset: 6px;
+  }
+
+  figcaption {
+    margin-top: var(--space-2);
+    font-family: var(--font-marker);
+    font-weight: 600;
+    font-size: var(--step--1);
+    line-height: 1.3;
+  }
+</style>

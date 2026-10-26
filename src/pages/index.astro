@@ -1,0 +1,1105 @@
+---
+import '../styles/global.css';
+import Mascot from '../components/Mascot.astro';
+import Doodle from '../components/Doodle.astro';
+import TapedPhoto from '../components/TapedPhoto.astro';
+import DateCheck from '../components/DateCheck.astro';
+import { studio, FUNCTIONS, photos, day, gallery, packages, steps, reviews, faqs } from '../data/studio.js';
+
+const title = `${studio.name}, wedding photographer in ${studio.city} (demo website)`;
+const description =
+  'A demo wedding photographer website: whole weddings function by function, packages with prices, a date check and an enquiry form. The photographer is made up.';
+const tilts = [-1.2, 0.8, -0.6, 1.1, -0.9, 0.5, -1.1, 0.9, -0.4, 1.2, -0.8];
+const credits = [...new Set(Object.values(photos).map((p) => p.by))];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#fff8e8" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to the photos</a>
+    <aside class="demo-strip" aria-label="Demo notice">
+      <p>
+        <strong>Demo website.</strong> Saad, the prices and reviews are made up. Photos are from Unsplash, credited below.
+      </p>
+    </aside>
+
+    <header class="site-header page">
+      <a class="brand" href="#main" aria-label={`${studio.name}, back to top`}>
+        <Mascot size={58} />
+        <span class="brand-name">Shots by <span class="ink-ul">Saad</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#day">The day</a>
+        <a href="#weddings">Photos</a>
+        <a href="#packages">Packages</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="marker-button header-cta" href="#date">Check<span class="cta-long"> your</span> date</a>
+    </header>
+
+    <main id="main">
+      <section class="hero page" aria-labelledby="hero-title">
+        <div class="hero-words">
+          <h1 id="hero-title">
+            Every function.<br /><span class="hl hl-pink">Every feeling.</span>
+          </h1>
+          <Doodle kind="swoosh" color="#2dd4bf" class="hero-swoosh" />
+        </div>
+        <div class="hero-more">
+          <p class="hero-lede">
+            Wedding photographer in {studio.city}. Mehndi, nikah, barat and walima, shot by two of us, {studio.travels}.
+          </p>
+          <div class="hero-actions">
+            <a class="marker-button" href="#date">
+              Check your date
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
+            </a>
+            <a class="marker-link" href="#day">See a whole wedding</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <TapedPhoto name="barat-lawn" tilt={1.4} crop="4 / 5" eager sizes="(min-width: 900px) 46vw, 92vw" />
+          <div class="hero-note" aria-hidden="true">
+            <Doodle kind="arrow" class="hero-arrow" />
+            <p>we wait for the light</p>
+          </div>
+          <Mascot size={150} class="hero-mascot" />
+        </div>
+      </section>
+
+      <section class="section page" id="day" aria-labelledby="day-title">
+        <div class="section-head">
+          <h2 id="day-title">One shaadi, <span class="ink-ul">four days</span></h2>
+          <p>A Pakistani wedding is not one event. Here is how we shoot each one, in the order they happen.</p>
+        </div>
+        <ol class="day">
+          {
+            day.map((d, i) => (
+              <li class="day-panel" data-tone={FUNCTIONS[d.fn].tone}>
+                <div class="day-label">
+                  <span class="day-num" aria-hidden="true">{i + 1}</span>
+                  <h3>
+                    <span class:list={['hl', FUNCTIONS[d.fn].tone !== 'ink' && `hl-${FUNCTIONS[d.fn].tone}`]}>
+                      {FUNCTIONS[d.fn].label}
+                    </span>
+                  </h3>
+                </div>
+                <TapedPhoto name={d.photo} tilt={i % 2 ? 0.9 : -0.9} crop="3 / 2" sizes="(min-width: 900px) 34vw, 90vw" />
+                <p class="day-note">{d.note}</p>
+                <p class="day-we">
+                  <Doodle kind="check" class="day-check" />
+                  {d.we}
+                </p>
+                {i < day.length - 1 && <Doodle kind="arrow" class="day-arrow" />}
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="section page" id="weddings" aria-labelledby="weddings-title">
+        <div class="section-head">
+          <h2 id="weddings-title">From the albums</h2>
+          <p>Tap any photo to see it big.</p>
+        </div>
+        <div class="gallery-wrap">
+          <div class="gallery">
+            {
+              gallery.map((name, i) => (
+                <div class="g-item">
+                  <div class="g-frame">
+                    <TapedPhoto name={name} tilt={tilts[i % tilts.length]} open={i} sizes="(min-width: 1000px) 30vw, (min-width: 640px) 45vw, 92vw" />
+                    {name === 'mehndi-hands' && <Doodle kind="circle" class="g-circle" />}
+                  </div>
+                  {name === 'mehndi-hands' && (
+                    <>
+                      <p class="g-note" aria-hidden="true">
+                        <Doodle kind="arrow-down" class="g-note-arrow" />
+                        Saad’s favourite
+                      </p>
+                    </>
+                  )}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <ul class="gallery-data" hidden>
+          {
+            gallery.map((name) => (
+              <li data-src={`/photos/${name}-1400.webp`} data-alt={photos[name].alt} data-by={photos[name].by} />
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="section page" id="packages" aria-labelledby="packages-title">
+        <div class="section-head">
+          <h2 id="packages-title">Prices, <span class="circled">written down<Doodle kind="circle" /></span></h2>
+          <p>No “DM for rates”. Book your date with a 30% advance. These prices are examples for the demo.</p>
+        </div>
+        <ul class="packages">
+          {
+            packages.map((p) => (
+              <li class:list={['package', p.picked && 'is-picked']}>
+                <h3>{p.name}</h3>
+                <p class="package-for">{p.for}</p>
+                <p class="package-price">{p.price}</p>
+                <ul class="package-gets">
+                  {p.gets.map((g) => (
+                    <li>
+                      <Doodle kind="check" class="get-check" />
+                      {g}
+                    </li>
+                  ))}
+                </ul>
+                <a class:list={['marker-button', !p.picked && 'plain']} href="#date">
+                  Check your date
+                </a>
+                {p.picked && (
+                  <p class="picked-tag">
+                    most picked!
+                    <Doodle kind="arrow-down" class="picked-arrow" />
+                  </p>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="packages-note">Travel and stay outside Lahore are charged at cost and written into the quote.</p>
+      </section>
+
+      <DateCheck />
+
+      <section class="section page" aria-labelledby="how-title">
+        <div class="section-head how-head">
+          <h2 id="how-title">How it works</h2>
+          <Mascot size={110} />
+        </div>
+        <ol class="steps">
+          {
+            steps.map((s, i) => (
+              <li>
+                <span class="step-num" aria-hidden="true">{i + 1}</span>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+                {i < steps.length - 1 && <Doodle kind="arrow" class="step-arrow" />}
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="section page" aria-labelledby="reviews-title">
+        <div class="section-head">
+          <h2 id="reviews-title">Notes from couples</h2>
+          <p>Example reviews written for this demo. A real site shows the photographer’s own Google reviews.</p>
+        </div>
+        <ul class="notes">
+          {
+            reviews.map((r, i) => (
+              <li class="note" style={`--tilt: ${[-2, 1.5, -1][i % 3]}deg`}>
+                <blockquote>
+                  <p>{r.text}</p>
+                </blockquote>
+                <p class="note-by">{r.who}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="section page" id="faq" aria-labelledby="faq-title">
+        <div class="section-head">
+          <h2 id="faq-title">Questions couples ask</h2>
+        </div>
+        <div class="faq">
+          {
+            faqs.map((f) => (
+              <details>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="closing page" aria-labelledby="closing-title">
+        <Mascot size={130} />
+        <div class="closing-words">
+          <h2 id="closing-title">Your date might <span class="ink-ul">still be free.</span></h2>
+          <a class="marker-button" href="#date">Check it now</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page footer-grid">
+        <p>
+          <strong>{studio.name}</strong>
+          Wedding and event photography, {studio.city}. Made up for this demo.
+        </p>
+        <p>
+          <strong>Photos</strong>
+          Free Unsplash photos by {credits.join(', ')}. The functions they are filed under are made up.
+        </p>
+        <p>
+          <strong>This is a demo website.</strong>
+          Nothing you type is sent anywhere.
+        </p>
+      </div>
+    </footer>
+
+    <dialog class="viewer" aria-label="Photo viewer" data-viewer>
+      <figure>
+        <img src={`/photos/${gallery[0]}-1400.webp`} alt={photos[gallery[0]].alt} data-viewer-img />
+        <figcaption>
+          <span data-viewer-alt></span>
+          <span class="viewer-by" data-viewer-by></span>
+        </figcaption>
+      </figure>
+      <div class="viewer-controls">
+        <button type="button" class="marker-button plain" data-viewer-prev aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5m6-6-6 6 6 6" /></svg>
+        </button>
+        <span class="viewer-count" data-viewer-count></span>
+        <button type="button" class="marker-button plain" data-viewer-next aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg>
+        </button>
+        <button type="button" class="marker-button" data-viewer-close>Close</button>
+      </div>
+    </dialog>
+
+    <script>
+      // Doodles draw themselves on when they come into view.
+      const drawn = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-drawn');
+              drawn.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -12% 0px' },
+      );
+      document.querySelectorAll('.draw').forEach((el) => drawn.observe(el));
+
+      // Photo viewer.
+      const viewer = document.querySelector('[data-viewer]');
+      const items = [...document.querySelectorAll('.gallery-data li')].map((li) => ({ ...li.dataset }));
+      const img = viewer.querySelector('[data-viewer-img]');
+      let index = 0;
+      let opener = null;
+
+      function show(i) {
+        index = (i + items.length) % items.length;
+        const item = items[index];
+        img.src = item.src;
+        img.alt = item.alt;
+        viewer.querySelector('[data-viewer-alt]').textContent = item.alt;
+        viewer.querySelector('[data-viewer-by]').textContent = `Photo: ${item.by} on Unsplash`;
+        viewer.querySelector('[data-viewer-count]').textContent = `${index + 1} of ${items.length}`;
+      }
+
+      document.addEventListener('click', (event) => {
+        const open = event.target.closest('[data-open-photo]');
+        if (!open) return;
+        opener = open;
+        show(Number(open.dataset.openPhoto));
+        viewer.showModal();
+      });
+      viewer.querySelector('[data-viewer-prev]').addEventListener('click', () => show(index - 1));
+      viewer.querySelector('[data-viewer-next]').addEventListener('click', () => show(index + 1));
+      viewer.querySelector('[data-viewer-close]').addEventListener('click', () => viewer.close());
+      viewer.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') show(index - 1);
+        if (event.key === 'ArrowRight') show(index + 1);
+      });
+      viewer.addEventListener('click', (event) => {
+        if (event.target === viewer) viewer.close();
+      });
+      viewer.addEventListener('close', () => opener?.focus());
+    </script>
+
+    <style>
+      .skip {
+        position: absolute;
+        left: var(--space-4);
+        top: -100px;
+        z-index: 10;
+        padding: var(--space-2) var(--space-4);
+        background: var(--hl-yellow);
+        border: 2px solid var(--ink);
+        font-weight: 700;
+      }
+
+      .skip:focus {
+        top: var(--space-2);
+      }
+
+      .demo-strip {
+        padding: var(--space-2) var(--space-4);
+        border-bottom: 2px dashed rgb(17 17 17 / 0.3);
+        background: var(--paper-shade);
+        font-size: var(--step--1);
+        text-align: center;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-5);
+        padding-block: var(--space-4);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        margin-right: auto;
+        text-decoration: none;
+      }
+
+      .brand-name {
+        font-family: var(--font-marker);
+        font-weight: 800;
+        font-size: var(--step-2);
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .site-nav {
+        display: flex;
+        gap: var(--space-1);
+      }
+
+      .site-nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 var(--space-3);
+        font-family: var(--font-marker);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: no-repeat 50% 75% / 0% 40%;
+        background-image: var(--swipe-yellow);
+        transition: background-size 220ms var(--ease-out);
+      }
+
+      .site-nav a:hover {
+        background-size: 90% 40%;
+      }
+
+      .header-cta {
+        min-height: 46px;
+        font-size: var(--step-0);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+        grid-template-rows: 1fr auto auto 1fr;
+        grid-template-areas:
+          '. photo'
+          'words photo'
+          'more photo'
+          '. photo';
+        column-gap: var(--space-7);
+        row-gap: var(--space-5);
+        padding-top: var(--space-6);
+      }
+
+      .hero-words {
+        grid-area: words;
+        display: grid;
+        gap: var(--space-5);
+        justify-items: start;
+      }
+
+      .hero-more {
+        grid-area: more;
+        display: grid;
+        gap: var(--space-5);
+        justify-items: start;
+        align-content: start;
+      }
+
+      .hero-photo {
+        grid-area: photo;
+      }
+
+      .hero h1 {
+        font-size: var(--step-4);
+        line-height: 1;
+      }
+
+      .hero :global(.hero-swoosh) {
+        width: min(100%, 520px);
+        height: 22px;
+        margin-top: calc(var(--space-4) * -1);
+      }
+
+      .hero-lede {
+        font-size: var(--step-1);
+        max-width: 32rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-4) var(--space-6);
+      }
+
+      .hero-photo {
+        position: relative;
+        padding: var(--space-5) var(--space-3) var(--space-7) var(--space-7);
+      }
+
+      .hero-photo :global(.hero-mascot) {
+        position: absolute;
+        left: -38px;
+        bottom: -6px;
+        z-index: 2;
+      }
+
+      .hero-note {
+        position: absolute;
+        left: 70px;
+        bottom: 128px;
+        z-index: 2;
+        display: grid;
+        justify-items: start;
+        pointer-events: none;
+      }
+
+      .hero-note p {
+        order: -1;
+        padding: 2px 8px;
+        background: var(--paper-raised);
+        border: 2px solid var(--ink);
+        border-radius: var(--sketch-2);
+        font-family: var(--font-marker);
+        font-weight: 700;
+        transform: rotate(-4deg);
+      }
+
+      .hero-note :global(.hero-arrow) {
+        width: 90px;
+        margin-left: 30px;
+        transform: rotate(-18deg) scaleY(-1);
+      }
+
+      .day {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-8) var(--space-8);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .day-panel {
+        position: relative;
+        display: grid;
+        gap: var(--space-4);
+        align-content: start;
+      }
+
+      .day-label {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+      }
+
+      .day-label h3 {
+        font-size: var(--step-3);
+      }
+
+      .day-panel[data-tone='ink'] .day-label h3 .hl {
+        text-decoration: underline 4px;
+        text-decoration-color: var(--ink);
+        text-underline-offset: 0.18em;
+      }
+
+      .day-num,
+      .step-num {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 46px;
+        height: 46px;
+        border: 2.5px solid var(--ink);
+        border-radius: 52% 48% 46% 54% / 48% 54% 46% 52%;
+        background: var(--paper-raised);
+        font-family: var(--font-marker);
+        font-weight: 800;
+        font-size: var(--step-1);
+      }
+
+      .day-note {
+        font-family: var(--font-marker);
+        font-weight: 600;
+        font-size: var(--step-1);
+        line-height: 1.35;
+      }
+
+      .day-we {
+        display: grid;
+        grid-template-columns: 26px 1fr;
+        gap: var(--space-2);
+        color: var(--ink-soft);
+      }
+
+      .day :global(.day-check),
+      .packages :global(.get-check) {
+        width: 24px;
+        margin-top: 2px;
+      }
+
+      .day :global(.day-arrow) {
+        position: absolute;
+        width: 90px;
+        right: -84px;
+        top: 38%;
+      }
+
+      /* Nikah sits top right; its arrow curls back down to Barat, bottom left. */
+      .day-panel:nth-child(2) :global(.day-arrow) {
+        right: auto;
+        left: -86px;
+        top: auto;
+        bottom: -58px;
+        transform: rotate(180deg);
+      }
+
+      .gallery-wrap {
+        position: relative;
+      }
+
+      .gallery {
+        columns: 3 300px;
+        column-gap: var(--space-6);
+      }
+
+      /* Each photo sits in its own block with room above for the tape, so
+         the tape never splits off into the previous column. */
+      .g-item {
+        position: relative;
+        break-inside: avoid;
+        padding-top: 16px;
+        margin-bottom: var(--space-5);
+      }
+
+      .g-frame {
+        position: relative;
+      }
+
+      .g-frame :global(.g-circle) {
+        position: absolute;
+        left: -8%;
+        top: 2%;
+        width: 118%;
+        max-width: none;
+        height: 102%;
+        overflow: visible;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .g-note {
+        display: flex;
+        align-items: end;
+        justify-content: flex-end;
+        gap: var(--space-2);
+        margin-top: var(--space-3);
+        padding-right: var(--space-2);
+        font-family: var(--font-marker);
+        font-weight: 700;
+        line-height: 1.15;
+        transform: rotate(-2deg);
+      }
+
+      .g-note :global(.g-note-arrow) {
+        width: 26px;
+        transform: rotate(200deg);
+      }
+
+      .packages {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-6);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        align-items: start;
+      }
+
+      .package {
+        position: relative;
+        display: grid;
+        gap: var(--space-3);
+        padding: var(--space-6) var(--space-5) var(--space-5);
+        border: 2.5px solid var(--ink);
+        border-radius: var(--sketch);
+        background: var(--paper-raised);
+      }
+
+      .package.is-picked {
+        border-width: 3.5px;
+        border-radius: var(--sketch-2);
+        transform: rotate(-0.8deg);
+      }
+
+      /* A marker note outside the card's top corner, pointing in. */
+      .picked-tag {
+        position: absolute;
+        top: -58px;
+        right: -6px;
+        display: grid;
+        justify-items: end;
+        font-family: var(--font-marker);
+        font-weight: 700;
+        font-size: var(--step-1);
+        text-transform: uppercase;
+        transform: rotate(5deg);
+        pointer-events: none;
+      }
+
+      .picked-tag :global(.picked-arrow) {
+        width: 34px;
+        margin-right: 46px;
+        transform: rotate(14deg);
+      }
+
+      .package h3 {
+        font-size: var(--step-2);
+      }
+
+      .package-for {
+        color: var(--ink-soft);
+      }
+
+      .package-price {
+        font-family: var(--font-marker);
+        font-weight: 800;
+        font-size: var(--step-3);
+        line-height: 1.1;
+      }
+
+      .package-gets {
+        display: grid;
+        gap: var(--space-2);
+        margin: 0 0 var(--space-3);
+        padding: var(--space-3) 0 0;
+        border-top: 2px dashed rgb(17 17 17 / 0.25);
+        list-style: none;
+      }
+
+      .package-gets li {
+        display: grid;
+        grid-template-columns: 26px 1fr;
+        gap: var(--space-2);
+      }
+
+      .package .marker-button {
+        justify-self: start;
+      }
+
+      .packages-note {
+        margin-top: var(--space-5);
+        color: var(--ink-soft);
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--space-7);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      /* Comic panels: a boxed frame per step, arrows between them. */
+      .steps li {
+        position: relative;
+        display: grid;
+        gap: var(--space-2);
+        align-content: start;
+        padding: var(--space-5);
+        border: 2.5px solid var(--ink);
+        border-radius: var(--sketch);
+        background: var(--paper-raised);
+      }
+
+      .steps li:nth-child(even) {
+        border-radius: var(--sketch-2);
+      }
+
+      .how-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: var(--space-5);
+        max-width: none;
+      }
+
+      .steps h3 {
+        font-size: var(--step-1);
+        margin-top: var(--space-2);
+      }
+
+      .steps p {
+        color: var(--ink-soft);
+      }
+
+      .steps :global(.step-arrow) {
+        position: absolute;
+        top: 18px;
+        right: -50px;
+        width: 46px;
+      }
+
+      .notes {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-6);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .note {
+        position: relative;
+        display: grid;
+        align-content: space-between;
+        gap: var(--space-4);
+        padding: var(--space-6) var(--space-5) var(--space-5);
+        border: 1.5px solid rgb(17 17 17 / 0.35);
+        background: var(--paper-raised);
+        box-shadow: var(--lift);
+        transform: rotate(var(--tilt));
+      }
+
+      .note::before {
+        content: '';
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        width: min(96px, 40%);
+        height: 26px;
+        background: var(--tape);
+        border: 1px solid rgb(17 17 17 / 0.08);
+        transform: translateX(-50%) rotate(-3deg);
+      }
+
+      .note blockquote {
+        margin: 0;
+        font-family: var(--font-marker);
+        font-weight: 600;
+        font-size: var(--step-1);
+        line-height: 1.35;
+      }
+
+      .note-by {
+        font-weight: 700;
+        font-size: var(--step--1);
+      }
+
+      .faq {
+        max-width: 50rem;
+      }
+
+      details {
+        border-bottom: 2px dashed rgb(17 17 17 / 0.3);
+      }
+
+      summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        min-height: 60px;
+        padding-block: var(--space-3);
+        font-family: var(--font-marker);
+        font-weight: 700;
+        font-size: var(--step-1);
+        cursor: pointer;
+        list-style: none;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::after {
+        content: '';
+        flex: none;
+        width: 36px;
+        height: 36px;
+        border: 2px solid var(--ink);
+        border-radius: 50% 46% 52% 48%;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.2 4.5c-.3 5 .2 10-.3 15M4.6 12.3c5 .3 10-.2 14.8.1' fill='none' stroke='%23111' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") center / 20px no-repeat;
+        transition: transform 220ms var(--ease-out);
+      }
+
+      details[open] summary::after {
+        transform: rotate(45deg);
+        background-color: var(--paper-shade);
+      }
+
+      details p {
+        max-width: 42rem;
+        padding-bottom: var(--space-4);
+      }
+
+      .closing {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        margin-top: var(--space-9);
+        padding: var(--space-6) 0;
+        border-top: 2.5px solid var(--ink);
+        border-bottom: 2.5px solid var(--ink);
+      }
+
+      .closing-words {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        flex: 1;
+      }
+
+      .closing h2 {
+        font-size: var(--step-3);
+        max-width: 16ch;
+      }
+
+      .site-footer {
+        padding-block: var(--space-7);
+        font-size: var(--step--1);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr 1fr;
+        gap: var(--space-6);
+      }
+
+      .footer-grid strong {
+        display: block;
+        font-family: var(--font-marker);
+        text-transform: uppercase;
+      }
+
+      .viewer {
+        width: min(1100px, 100% - 2rem);
+        max-height: calc(100% - 2rem);
+        padding: var(--space-4);
+        border: 2.5px solid var(--ink);
+        border-radius: var(--sketch-2);
+        background: var(--paper-raised);
+        color: var(--ink);
+      }
+
+      .viewer::backdrop {
+        background: rgb(17 17 17 / 0.78);
+      }
+
+      .viewer[open] {
+        animation: viewer-in 260ms var(--ease-out);
+      }
+
+      @keyframes viewer-in {
+        from {
+          opacity: 0;
+          transform: scale(0.97) rotate(-0.6deg);
+        }
+      }
+
+      .viewer figure {
+        margin: 0;
+        display: grid;
+        gap: var(--space-2);
+      }
+
+      .viewer img {
+        width: 100%;
+        max-height: calc(100vh - 12rem);
+        object-fit: contain;
+        background: var(--paper-shade);
+      }
+
+      .viewer figcaption {
+        display: grid;
+        gap: 2px;
+        font-size: var(--step--1);
+      }
+
+      .viewer-by {
+        color: var(--ink-soft);
+      }
+
+      .viewer-controls {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+      }
+
+      .viewer-controls [data-viewer-close] {
+        margin-left: auto;
+      }
+
+      .viewer-count {
+        font-family: var(--font-marker);
+        font-weight: 700;
+      }
+
+      @media (max-width: 1100px) {
+        .steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .steps :global(.step-arrow) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .site-nav {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          grid-template-rows: none;
+          grid-template-areas:
+            'words'
+            'photo'
+            'more';
+          gap: var(--space-4);
+        }
+
+        .hero-photo {
+          padding: var(--space-4) var(--space-2) var(--space-7) var(--space-8);
+        }
+
+        .day {
+          grid-template-columns: 1fr;
+          gap: var(--space-8);
+        }
+
+        .day :global(.day-arrow),
+        .day-panel:nth-child(2) :global(.day-arrow) {
+          left: auto;
+          right: 8%;
+          top: auto;
+          bottom: -68px;
+          width: 64px;
+          transform: rotate(100deg);
+        }
+
+        .packages,
+        .notes {
+          grid-template-columns: 1fr;
+          gap: var(--space-7);
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-header {
+          gap: var(--space-3);
+        }
+
+        .brand :global(svg) {
+          width: 44px;
+          height: 44px;
+        }
+
+        .brand-name {
+          font-size: var(--step-1);
+        }
+
+        .header-cta {
+          min-height: 44px;
+          padding-inline: var(--space-3);
+          font-size: var(--step--1);
+          white-space: nowrap;
+        }
+
+        .cta-long {
+          display: none;
+        }
+
+        .demo-strip {
+          font-size: var(--step--2);
+        }
+
+        .hero h1 {
+          font-size: 2.6rem;
+        }
+
+        .hero-photo {
+          padding-left: var(--space-7);
+        }
+
+        .hero-photo :global(.hero-mascot) {
+          width: 110px;
+          height: 110px;
+          left: -22px;
+        }
+
+        .hero-note {
+          left: 56px;
+          bottom: 96px;
+        }
+
+        .gallery {
+          columns: 2 140px;
+          column-gap: var(--space-4);
+        }
+
+        .g-item {
+          margin-bottom: var(--space-3);
+        }
+
+        .gallery :global(.taped) {
+          padding: 6px 6px 8px;
+        }
+
+        .steps {
+          grid-template-columns: 1fr;
+        }
+
+        .closing {
+          flex-direction: column;
+          align-items: start;
+        }
+      }
+    </style>
+  </body>
+</html>

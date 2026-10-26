@@ -1,0 +1,434 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T21:00:00+05:00",
+  "title": "Design System: Shots by Saad (demo)",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Napkin Cream",
+        "canonical": "oklch(98.0% 0.022 87.1)",
+        "tonalRamp": [
+          "oklch(15% 0.022 87.1)",
+          "oklch(25% 0.022 87.1)",
+          "oklch(37% 0.022 87.1)",
+          "oklch(50% 0.022 87.1)",
+          "oklch(62% 0.022 87.1)",
+          "oklch(74% 0.022 87.1)",
+          "oklch(85% 0.022 87.1)",
+          "oklch(95% 0.022 87.1)"
+        ]
+      },
+      "paper-raised": {
+        "role": "neutral",
+        "displayName": "Clean Sheet",
+        "canonical": "oklch(99.4% 0.009 93.6)",
+        "tonalRamp": [
+          "oklch(15% 0.009 93.6)",
+          "oklch(25% 0.009 93.6)",
+          "oklch(37% 0.009 93.6)",
+          "oklch(50% 0.009 93.6)",
+          "oklch(62% 0.009 93.6)",
+          "oklch(74% 0.009 93.6)",
+          "oklch(85% 0.009 93.6)",
+          "oklch(95% 0.009 93.6)"
+        ]
+      },
+      "paper-shade": {
+        "role": "neutral",
+        "displayName": "Folded Corner",
+        "canonical": "oklch(93.8% 0.032 89.1)",
+        "tonalRamp": [
+          "oklch(15% 0.032 89.1)",
+          "oklch(25% 0.032 89.1)",
+          "oklch(37% 0.032 89.1)",
+          "oklch(50% 0.032 89.1)",
+          "oklch(62% 0.032 89.1)",
+          "oklch(74% 0.032 89.1)",
+          "oklch(85% 0.032 89.1)",
+          "oklch(95% 0.032 89.1)"
+        ]
+      },
+      "field-white": {
+        "role": "neutral",
+        "displayName": "Field White",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(37% 0.000 89.9)",
+          "oklch(50% 0.000 89.9)",
+          "oklch(62% 0.000 89.9)",
+          "oklch(74% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Marker Ink",
+        "canonical": "oklch(17.8% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(37% 0.000 89.9)",
+          "oklch(50% 0.000 89.9)",
+          "oklch(62% 0.000 89.9)",
+          "oklch(74% 0.000 89.9)",
+          "oklch(85% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(33.5% 0.010 73.6)",
+        "tonalRamp": [
+          "oklch(15% 0.010 73.6)",
+          "oklch(25% 0.010 73.6)",
+          "oklch(37% 0.010 73.6)",
+          "oklch(50% 0.010 73.6)",
+          "oklch(62% 0.010 73.6)",
+          "oklch(74% 0.010 73.6)",
+          "oklch(85% 0.010 73.6)",
+          "oklch(95% 0.010 73.6)"
+        ]
+      },
+      "hl-yellow": {
+        "role": "primary",
+        "displayName": "Mehndi Highlighter",
+        "canonical": "oklch(92.4% 0.168 100.7)",
+        "tonalRamp": [
+          "oklch(15% 0.168 100.7)",
+          "oklch(25% 0.168 100.7)",
+          "oklch(37% 0.168 100.7)",
+          "oklch(50% 0.168 100.7)",
+          "oklch(62% 0.168 100.7)",
+          "oklch(74% 0.168 100.7)",
+          "oklch(85% 0.168 100.7)",
+          "oklch(95% 0.168 100.7)"
+        ]
+      },
+      "hl-pink": {
+        "role": "secondary",
+        "displayName": "Barat Highlighter",
+        "canonical": "oklch(73.4% 0.186 355.3)",
+        "tonalRamp": [
+          "oklch(15% 0.186 355.3)",
+          "oklch(25% 0.186 355.3)",
+          "oklch(37% 0.186 355.3)",
+          "oklch(50% 0.186 355.3)",
+          "oklch(62% 0.186 355.3)",
+          "oklch(74% 0.186 355.3)",
+          "oklch(85% 0.186 355.3)",
+          "oklch(95% 0.186 355.3)"
+        ]
+      },
+      "hl-teal": {
+        "role": "tertiary",
+        "displayName": "Walima Highlighter",
+        "canonical": "oklch(78.5% 0.133 181.9)",
+        "tonalRamp": [
+          "oklch(15% 0.133 181.9)",
+          "oklch(25% 0.133 181.9)",
+          "oklch(37% 0.133 181.9)",
+          "oklch(50% 0.133 181.9)",
+          "oklch(62% 0.133 181.9)",
+          "oklch(74% 0.133 181.9)",
+          "oklch(85% 0.133 181.9)",
+          "oklch(95% 0.133 181.9)"
+        ]
+      },
+      "hl-teal-ink": {
+        "role": "tertiary",
+        "displayName": "Walima Ink",
+        "canonical": "oklch(51.1% 0.086 186.4)",
+        "tonalRamp": [
+          "oklch(15% 0.086 186.4)",
+          "oklch(25% 0.086 186.4)",
+          "oklch(37% 0.086 186.4)",
+          "oklch(50% 0.086 186.4)",
+          "oklch(62% 0.086 186.4)",
+          "oklch(74% 0.086 186.4)",
+          "oklch(85% 0.086 186.4)",
+          "oklch(95% 0.086 186.4)"
+        ]
+      },
+      "error": {
+        "role": "error",
+        "displayName": "Fix-it Red",
+        "canonical": "oklch(49.2% 0.188 6.7)",
+        "tonalRamp": [
+          "oklch(15% 0.188 6.7)",
+          "oklch(25% 0.188 6.7)",
+          "oklch(37% 0.188 6.7)",
+          "oklch(50% 0.188 6.7)",
+          "oklch(62% 0.188 6.7)",
+          "oklch(74% 0.188 6.7)",
+          "oklch(85% 0.188 6.7)",
+          "oklch(95% 0.188 6.7)"
+        ]
+      },
+      "tape": {
+        "role": "neutral",
+        "displayName": "Tape",
+        "canonical": "rgb(255 236 170 / 0.72)",
+        "tonalRamp": [
+          "oklch(15% 0.08 92)",
+          "oklch(25% 0.08 92)",
+          "oklch(37% 0.08 92)",
+          "oklch(50% 0.08 92)",
+          "oklch(62% 0.08 92)",
+          "oklch(74% 0.08 92)",
+          "oklch(85% 0.08 92)",
+          "oklch(95% 0.08 92)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles, day function labels, closing line."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Package names, calendar month, enquiry heading, speech bubble answer."
+      },
+      "title-sm": {
+        "displayName": "Title Small",
+        "purpose": "Step titles, FAQ questions, marker link."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Prices, lettered in marker."
+      },
+      "note": {
+        "displayName": "Note",
+        "purpose": "Handwritten asides, day notes, review quotes."
+      },
+      "body-lg": {
+        "displayName": "Body Large",
+        "purpose": "Hero lede and section lead lines."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, inclusions, FAQ answers."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Demo notice, captions, footer, helper lines."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Form labels, weekday heads, footer heads."
+      },
+      "label-sm": {
+        "displayName": "Label Small",
+        "purpose": "Calendar key marks."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Marker buttons and number badges."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-lift",
+        "value": "0 2px 3px rgb(17 17 17 / 0.08), 0 14px 26px -16px rgb(17 17 17 / 0.4)",
+        "purpose": "Taped photos and taped review notes: things stuck onto the paper."
+      },
+      {
+        "name": "selected-ring",
+        "value": "0 0 0 3px #ff6fae",
+        "purpose": "The chosen calendar date, outside its ink border."
+      },
+      {
+        "name": "doubled-outline",
+        "value": "pseudo element inset 3px -5px -5px 3px, 1.5px solid #111, sketch-2 corners",
+        "purpose": "Second pen line behind marker buttons. A stroke, never a filled offset block."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "The only easing curve."
+      },
+      {
+        "name": "press",
+        "value": "140ms; scale(0.97) rotate(-0.4deg)",
+        "purpose": "Button and calendar day press."
+      },
+      {
+        "name": "outline-slide",
+        "value": "200ms; translate(2px, 2px)",
+        "purpose": "Doubled button outline on hover."
+      },
+      {
+        "name": "swipe-in",
+        "value": "220ms",
+        "purpose": "Nav highlighter hover swipe and the FAQ plus turning into a cross."
+      },
+      {
+        "name": "viewer-in",
+        "value": "260ms; from opacity 0, scale(0.97) rotate(-0.6deg)",
+        "purpose": "Photo viewer opening."
+      },
+      {
+        "name": "draw-on",
+        "value": "900ms; stroke-dashoffset 1 to 0, once on entering view",
+        "purpose": "Doodles drawing themselves on; fully drawn under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1100px"
+      },
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Marker Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action: yellow highlighter fill inside a wobbly ink box with a second pen line traced behind it.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Check your date <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 52px; padding: 0 1.5rem; border: 2.5px solid #111; border-radius: 255px 18px 225px 16px / 16px 225px 18px 255px; background: #ffe84d; color: #111; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 800; font-size: 1.25rem; text-transform: uppercase; text-decoration: none; cursor: pointer; isolation: isolate; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn::after { content: ''; position: absolute; inset: 3px -5px -5px 3px; border: 1.5px solid #111; border-radius: 18px 225px 16px 255px / 255px 16px 225px 18px; pointer-events: none; z-index: -1; transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn:hover::after { transform: translate(2px, 2px); } .ds-btn:active { transform: scale(0.97) rotate(-0.4deg); } .ds-btn:focus-visible { outline: 3px dashed #111; outline-offset: 3px; } .ds-btn svg { width: 22px; height: 22px; }"
+    },
+    {
+      "name": "Plain Marker Button",
+      "kind": "button",
+      "refersTo": "button-plain",
+      "description": "Secondary actions and non picked packages: the same drawn box on the raised sheet.",
+      "html": "<a class=\"ds-btn ds-btn-plain\" href=\"#\">Check your date</a>",
+      "css": ".ds-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 52px; padding: 0 1.5rem; border: 2.5px solid #111; border-radius: 255px 18px 225px 16px / 16px 225px 18px 255px; background: #ffe84d; color: #111; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 800; font-size: 1.25rem; text-transform: uppercase; text-decoration: none; cursor: pointer; isolation: isolate; transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn::after { content: ''; position: absolute; inset: 3px -5px -5px 3px; border: 1.5px solid #111; border-radius: 18px 225px 16px 255px / 255px 16px 225px 18px; pointer-events: none; z-index: -1; transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn:hover::after { transform: translate(2px, 2px); } .ds-btn:active { transform: scale(0.97) rotate(-0.4deg); } .ds-btn:focus-visible { outline: 3px dashed #111; outline-offset: 3px; } .ds-btn svg { width: 22px; height: 22px; } .ds-btn-plain { background: #fffdf6; }"
+    },
+    {
+      "name": "Marker Link",
+      "kind": "button",
+      "refersTo": "link-marker",
+      "description": "The second choice beside a primary button, lettered in marker with a teal underline.",
+      "html": "<a class=\"ds-mlink\" href=\"#\">See a whole wedding</a>",
+      "css": ".ds-mlink { color: #111; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; font-size: 1.25rem; text-transform: uppercase; text-decoration: underline; text-decoration-color: #2dd4bf; text-decoration-thickness: 3px; text-underline-offset: 0.22em; } .ds-mlink:hover { text-decoration-color: #ff6fae; } .ds-mlink:focus-visible { outline: 3px dashed #111; outline-offset: 3px; }"
+    },
+    {
+      "name": "Nav",
+      "kind": "nav",
+      "description": "Marker caps links; a yellow highlighter swipes in behind the word on hover.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">The day</a><a href=\"#\">Photos</a><a href=\"#\">Packages</a><a href=\"#\">FAQ</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 0.25rem; background: #fff8e8; } .ds-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.75rem; color: #111; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; text-transform: uppercase; text-decoration: none; background: no-repeat 50% 75% / 0% 40%; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M1 5C25 2 60 4 99 2L98 16C70 18 30 16 2 18Z' fill='%23ffe84d'/%3E%3C/svg%3E\"); transition: background-size 220ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-nav a:hover { background-size: 90% 40%; } .ds-nav a:focus-visible { outline: 3px dashed #111; outline-offset: 3px; }"
+    },
+    {
+      "name": "Sketch Card",
+      "kind": "card",
+      "refersTo": "card-sketch",
+      "description": "Packages, comic panel steps, calendar and enquiry sheet: a hand drawn box on the raised sheet, flat.",
+      "html": "<div class=\"ds-card\"><h3>Shaadi</h3><p class=\"ds-for\">Barat and walima</p><p class=\"ds-price\">Rs 160,000</p><ul><li>2 photographers on both days</li><li>800+ edited photos</li></ul></div>",
+      "css": ".ds-card { display: grid; gap: 0.75rem; max-width: 320px; padding: 2rem 1.5rem 1.5rem; border: 2.5px solid #111; border-radius: 255px 18px 225px 16px / 16px 225px 18px 255px; background: #fffdf6; color: #111; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; } .ds-card h3 { margin: 0; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; font-size: 1.75rem; line-height: 1.04; text-transform: uppercase; } .ds-for { margin: 0; color: #3a3631; } .ds-price { margin: 0; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 800; font-size: 2.6rem; line-height: 1.1; } .ds-card ul { margin: 0; padding: 0.75rem 0 0 1.2rem; border-top: 2px dashed rgb(17 17 17 / 0.25); }"
+    },
+    {
+      "name": "Taped Photo",
+      "kind": "custom",
+      "refersTo": "taped-photo",
+      "description": "Every photograph is a print taped onto the paper: raised mount, ink edge, soft lift, slight tilt, two tape strips.",
+      "html": "<figure class=\"ds-taped\"><div class=\"ds-img\"></div></figure>",
+      "css": ".ds-taped { position: relative; margin: 16px 0 0; width: 260px; padding: 10px 10px 12px; background: #fffdf6; border: 1.5px solid #111; border-radius: 3px 6px 4px 5px; box-shadow: 0 2px 3px rgb(17 17 17 / 0.08), 0 14px 26px -16px rgb(17 17 17 / 0.4); transform: rotate(-1deg); } .ds-taped::before, .ds-taped::after { content: ''; position: absolute; width: min(84px, 36%); height: 26px; background: rgb(255 236 170 / 0.72); border: 1px solid rgb(17 17 17 / 0.08); z-index: 1; } .ds-taped::before { top: -12px; left: 18px; transform: rotate(-8deg); } .ds-taped::after { top: -10px; right: 16px; transform: rotate(6deg); } .ds-img { aspect-ratio: 3 / 2; background: linear-gradient(135deg, #b23a48, #e8a23a); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "White writing field with a 2px ink edge, uneven small corners and a marker label; dashed ink focus, Fix-it Red when invalid.",
+      "html": "<label class=\"ds-field\"><span>WhatsApp number</span><input type=\"tel\" placeholder=\"03XX XXXXXXX\"></label><label class=\"ds-field\"><span>Your name</span><input aria-invalid=\"true\"><em>Write your name.</em></label>",
+      "css": ".ds-field { display: grid; gap: 0.25rem; max-width: 320px; } .ds-field span { font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; font-size: 0.9375rem; text-transform: uppercase; color: #111; } .ds-field input { min-height: 50px; padding: 0.5rem 0.75rem; border: 2px solid #111; border-radius: 10px 14px 9px 13px; background: #fff; color: #111; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; font-size: 1.0625rem; } .ds-field input::placeholder { color: #3a3631; opacity: 0.8; } .ds-field input:focus-visible { outline: 3px dashed #111; outline-offset: 3px; } .ds-field input[aria-invalid='true'] { border: 3px solid #b0124f; } .ds-field em { color: #b0124f; font-style: normal; font-weight: 700; font-size: 0.9375rem; }"
+    },
+    {
+      "name": "Function Chip",
+      "kind": "chip",
+      "refersTo": "chip-choice",
+      "description": "A drawn tick box choice; checking it swipes that function's highlighter behind the chip.",
+      "html": "<div class=\"ds-chips\"><label class=\"ds-chip\" data-tone=\"yellow\"><input type=\"checkbox\" checked><span>Mehndi</span></label><label class=\"ds-chip\" data-tone=\"pink\"><input type=\"checkbox\"><span>Barat</span></label><label class=\"ds-chip\" data-tone=\"teal\"><input type=\"checkbox\" checked><span>Walima</span></label></div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; } .ds-chip { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 46px; padding: 0 1rem; border: 2px solid #111; border-radius: 18px 225px 16px 255px / 255px 16px 225px 18px; background: #fff; color: #111; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; cursor: pointer; } .ds-chip input { appearance: none; flex: none; width: 22px; height: 22px; margin: 0; border: 2px solid #111; border-radius: 4px 6px 5px 3px; background: #fff; cursor: pointer; } .ds-chip input:checked { background: #fff url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M5 16l7 7L26 6' fill='none' stroke='%23111' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\") center / 90% no-repeat; } .ds-chip input:focus-visible { outline: none; } .ds-chip:has(input:focus-visible) { outline: 3px dashed #111; outline-offset: 3px; } .ds-chip:has(input:checked)[data-tone='yellow'] { background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M1 5C25 2 60 4 99 2L98 16C70 18 30 16 2 18Z' fill='%23ffe84d'/%3E%3C/svg%3E\") no-repeat center / 96% 80%, #fff; } .ds-chip:has(input:checked)[data-tone='pink'] { background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M1 5C25 2 60 4 99 2L98 16C70 18 30 16 2 18Z' fill='%23ff6fae'/%3E%3C/svg%3E\") no-repeat center / 96% 80%, #fff; } .ds-chip:has(input:checked)[data-tone='teal'] { background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M1 5C25 2 60 4 99 2L98 16C70 18 30 16 2 18Z' fill='%232dd4bf'/%3E%3C/svg%3E\") no-repeat center / 96% 80%, #fff; }"
+    },
+    {
+      "name": "FAQ Disclosure",
+      "kind": "custom",
+      "description": "Marker question with a lopsided ink ring holding a drawn plus that turns into a cross when open.",
+      "html": "<details class=\"ds-faq\"><summary>When do we get our photos?</summary><p>Edited photos in 3 weeks.</p></details><details class=\"ds-faq\" open><summary>Do you make videos too?</summary><p>Example answer.</p></details>",
+      "css": ".ds-faq { border-bottom: 2px dashed rgb(17 17 17 / 0.3); color: #111; max-width: 520px; } .ds-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; padding-block: 0.75rem; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; font-size: 1.25rem; cursor: pointer; list-style: none; } .ds-faq summary::-webkit-details-marker { display: none; } .ds-faq summary::after { content: ''; flex: none; width: 36px; height: 36px; border: 2px solid #111; border-radius: 50% 46% 52% 48%; background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.2 4.5c-.3 5 .2 10-.3 15M4.6 12.3c5 .3 10-.2 14.8.1' fill='none' stroke='%23111' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E\") center / 20px no-repeat; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-faq[open] summary::after { transform: rotate(45deg); background-color: #f3ead3; } .ds-faq summary:focus-visible { outline: 3px dashed #111; outline-offset: 3px; } .ds-faq p { margin: 0; padding-bottom: 1rem; font-family: Figtree, 'Segoe UI', system-ui, sans-serif; }"
+    },
+    {
+      "name": "Highlighter and Circle Emphasis",
+      "kind": "custom",
+      "description": "A function highlighter swiped behind words, and the non colour emphasis: ink underline or a drawn marker circle.",
+      "html": "<p class=\"ds-emph\"><span class=\"ds-hl ds-pink\">Every feeling.</span> One shaadi, <span class=\"ds-ul\">four days</span>. Prices, <span class=\"ds-circ\">written down<svg viewBox=\"0 0 220 120\" preserveAspectRatio=\"none\" fill=\"none\" stroke=\"#111\" stroke-width=\"3.5\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M150 12C92 0 18 16 10 58c-8 44 74 58 140 46 54-10 70-48 46-74-16-18-56-22-88-18\"/></svg></span></p>",
+      "css": ".ds-emph { color: #111; font-family: 'Shantell Sans', 'Comic Sans MS', 'Segoe Print', cursive; font-weight: 700; font-size: 2rem; line-height: 1.3; text-transform: uppercase; } .ds-hl { padding: 0 0.12em; margin: 0 -0.06em; background-repeat: no-repeat; background-size: 100% 78%; background-position: 0 70%; box-decoration-break: clone; -webkit-box-decoration-break: clone; } .ds-pink { background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20' preserveAspectRatio='none'%3E%3Cpath d='M1 5C25 2 60 4 99 2L98 16C70 18 30 16 2 18Z' fill='%23ff6fae'/%3E%3C/svg%3E\"); } .ds-ul { text-decoration: underline; text-decoration-thickness: 0.09em; text-underline-offset: 0.14em; } .ds-circ { position: relative; display: inline-block; white-space: nowrap; } .ds-circ svg { position: absolute; left: calc(-4.7% - 0.33em); top: -24%; width: calc(111.4% + 0.67em); max-width: none; height: 148%; overflow: visible; pointer-events: none; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Napkin Sketch",
+    "overview": "The photographer sketches your wedding day for you, like a friend drawing on a napkin. Everything that is not a photo is drawn by hand: black marker lines that wobble, highlighter swipes behind words, arrows that curl from one thing to the next, and tape holding the photos onto cream paper. The photos are the only finished, photographic objects on the page, and the drawn layer exists to point at them.\n\nDensity is relaxed and annotated rather than gridded and quiet. Boxes have uneven corners and a second sketched outline; photos sit at small tilts; notes are lettered in marker caps beside the thing they explain. The system refuses the dark, full screen slideshow with a thin serif name that wedding photographer sites default to.\n\nMotion is the pen moving. Doodles draw themselves on once as they scroll into view, presses squash slightly with a hair of rotation, and nothing loops.",
+    "keyCharacteristics": [
+      "Cream paper ground, black marker ink for every line and every letter.",
+      "Three highlighters, each tied to a wedding function, never used as decoration.",
+      "Marker caps lettering (Shantell Sans) for anything said out loud; clean sans (Figtree) for reading.",
+      "Wobbly boxes with a doubled outline; photos taped on at slight tilts.",
+      "A doodled photographer mascot whose face carries state."
+    ],
+    "rules": [
+      {
+        "name": "The Highlighters Have Jobs Rule",
+        "body": "Yellow is mehndi and the main action, pink is barat and the hero phrase, teal is walima and \"free\". Nikah has no highlighter; it gets a thick ink underline. Any other emphasis uses an ink underline or a marker circle, never a highlighter picked for colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Ink Rule",
+        "body": "Every line on the page, text, border, doodle and focus ring, is the same black marker. Do not introduce grey borders or coloured outlines; hierarchy comes from stroke weight (1.5px, 2px, 2.5px, 3.5px), not hue. The single exception is Fix-it Red on a field the visitor has to correct.",
+        "section": "colors"
+      },
+      {
+        "name": "The Marker Speaks, Figtree Explains Rule",
+        "body": "Anything the photographer would write on the napkin (headings, buttons, notes, prices, labels) is Shantell Sans; anything a visitor reads as a paragraph is Figtree. Never set a paragraph of body copy in the marker face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Drawn Versus Stuck Rule",
+        "body": "If it is drawn on the page it is flat; if it is stuck onto the page it lifts. The doubled outline behind buttons is a second pen line, not a shadow, and stays an unfilled stroke.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep every highlighter on its job: yellow for mehndi and the main action, pink for barat and the hero phrase, teal for walima and free dates.",
+      "Do use an ink underline or a drawn marker circle for any other emphasis.",
+      "Do draw every box with the sketch corners and a 2.5px ink border, alternating sketch and sketch-2 between neighbours.",
+      "Do tape photos on with two tape strips, a Clean Sheet mount and a small tilt, and keep each photo in its own block so its tape travels with it.",
+      "Do set headings, buttons, labels, prices and asides in Shantell Sans uppercase or note case, and paragraphs in Figtree.",
+      "Do put handwritten notes beside or outside what they point at, connected by a drawn arrow.",
+      "Do let the mascot's face carry state instead of adding status colour.",
+      "Do draw form controls and small icons (tick boxes, select chevrons, the FAQ plus) as ink strokes rather than shipping native chrome or typed characters."
+    ],
+    "donts": [
+      "Don't use a dark full screen slideshow or a thin serif name; the page is cream paper and marker.",
+      "Don't pick a highlighter for decoration or rotate highlighter colours through a list.",
+      "Don't fill the doubled button outline into a solid offset shadow block; it is a pen line.",
+      "Don't use perfect circles or uniform radii; round things are lopsided blobs.",
+      "Don't stack a small label above a heading; notes sit beside things, with an arrow.",
+      "Don't set body paragraphs in Shantell Sans or add a second display face.",
+      "Don't add grey or coloured borders; every line is the one black ink, except Fix-it Red on a field to correct.",
+      "Don't give a single control its own focus colour; every focus ring is the dashed ink outline."
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+---
+// Saad as a doodle: a round head with spiky hair and a camera. The face
+// changes with `mood`: happy (free), alert (one team left), sorry (booked).
+interface Props {
+  mood?: 'happy' | 'alert' | 'sorry';
+  size?: number;
+  class?: string;
+}
+const { mood = 'happy', size = 140, class: className } = Astro.props;
+---
+
+<svg
+  class:list={['mascot', className]}
+  data-mood={mood}
+  width={size}
+  height={size}
+  viewBox="0 0 170 160"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d="M42 112 A46 46 0 1 1 122 116" fill="none" stroke="#2dd4bf" stroke-width="7" stroke-linecap="round" />
+  <g fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 42 58 22M78 39 79 17M92 42 101 24" />
+    <path d="M118 74c4-31-18-40-38-40-24 0-41 15-41 42 0 25 17 41 40 41 17 0 31-8 37-22" fill="#fffdf6" />
+    <path d="M41 78c-9 0-11 13-1 16" />
+    <ellipse cx="66" cy="72" rx="10" ry="12" fill="#fff" />
+    <ellipse cx="88" cy="72" rx="10" ry="12" fill="#fff" />
+  </g>
+
+  <g class="mood mood-happy">
+    <circle cx="68" cy="70" r="4.5" fill="#111" />
+    <circle cx="90" cy="70" r="4.5" fill="#111" />
+    <path d="M66 96c6 9 19 9 26 0" fill="#ff6fae" stroke="#111" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+  <g class="mood mood-alert">
+    <circle cx="66" cy="72" r="4" fill="#111" />
+    <circle cx="88" cy="72" r="4" fill="#111" />
+    <path d="M56 54 74 52M80 52 98 55" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" />
+    <ellipse cx="78" cy="100" rx="5" ry="6" fill="#fff" stroke="#111" stroke-width="3" />
+    <path d="M124 44c5 8 3 13-1 13-4 0-5-5 1-13Z" fill="#2dd4bf" stroke="#111" stroke-width="2.5" stroke-linejoin="round" />
+  </g>
+  <g class="mood mood-sorry">
+    <circle cx="65" cy="76" r="4" fill="#111" />
+    <circle cx="87" cy="76" r="4" fill="#111" />
+    <path d="M57 58 74 63M82 63 99 58" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" />
+    <path d="M67 104c7-7 17-7 23 0" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+
+  <g stroke="#111" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M104 98h12l4-7h14l4 7h8c4 0 6 2 6 6v24c0 4-2 6-6 6h-42c-4 0-6-2-6-6v-24c0-4 2-6 6-6Z" fill="#ffe84d" />
+    <circle cx="126" cy="116" r="11" fill="#fffdf6" />
+    <circle cx="126" cy="116" r="4.5" fill="#111" stroke="none" />
+    <path d="M100 124c-9 1-12-6-6-10" fill="none" />
+  </g>
+  <g class="mood-happy-only" stroke="#111" stroke-width="3" stroke-linecap="round">
+    <path d="M152 86l8-7M156 98l11-1M150 76l3-10" />
+  </g>
+</svg>
+
+<style>
+  .mascot {
+    overflow: visible;
+  }
+
+  .mood {
+    display: none;
+  }
+
+  .mascot[data-mood='happy'] .mood-happy,
+  .mascot[data-mood='alert'] .mood-alert,
+  .mascot[data-mood='sorry'] .mood-sorry {
+    display: inline;
+  }
+
+  .mascot:not([data-mood='happy']) .mood-happy-only {
+    display: none;
+  }
+</style>
